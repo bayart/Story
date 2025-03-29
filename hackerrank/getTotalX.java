@@ -17,7 +17,7 @@ public static int getTotalX(List<Integer> a, List<Integer> b) {
     for (int j = min; j <= max; j = j + min) {
         checkDiv = true;
         for (int m = 0; m < a.size(); m++) {
-            System.out.println(j + ", " + a.get(m) + ", " + j % a.get(m));
+            // System.out.println(j+", "+a.get(m) +", "+ j % a.get(m) );
             if (j % a.get(m) != 0) {
                 checkDiv = false;
             }
@@ -26,26 +26,25 @@ public static int getTotalX(List<Integer> a, List<Integer> b) {
             dividers.add(j);
         }
     }
-    System.out.println("-------------");
-    for (int h = 0; h < dividers.size(); h++) {
-        System.out.println(dividers.get(h));
-    }
-
+    // System.out.println("-------------");
+    // for (int h=0; h<dividers.size(); h++){
+    // System.out.println(dividers.get(h));
+    // }
     boolean check = true;
-    for (int h = 0; h < dividers.size(); h++) {
+
+    for (int h = dividers.size() - 1; h >= 0; h--) { // Iterate backward
         check = true;
+
         for (int l = 0; l < b.size(); l++) {
+            System.out.println(b.get(l) + ", " + dividers.get(h) + ", " + b.get(l) % dividers.get(h));
             if (b.get(l) % dividers.get(h) != 0) {
                 check = false;
             }
         }
-        if (check == false) {
+        if (!check) {
             dividers.remove(h);
         }
-    }
-    System.out.println("-------------");
-    for (int h = 0; h < dividers.size(); h++) {
-        System.out.println(dividers.get(h));
+
     }
     return dividers.size();
 
