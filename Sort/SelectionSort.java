@@ -23,7 +23,7 @@ public class SelectionSort {
             int temp = array[minIndex];
             array[minIndex] = array[i];
             array[i] = temp;
-            System.out.println(step + "th Step :");
+            System.out.println(step + "-th Step :");
             for (int num : array) {
                 System.out.print(num + " ");
             }
