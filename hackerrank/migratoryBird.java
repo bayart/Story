@@ -10,23 +10,18 @@ public static int migratoryBirds(List<Integer> arr) {
             birdType = arr.get(i);
 
         } else {
-            count++;
+            count = birdTypes.get(arr.get(i)) + 1;
             birdTypes.replace(arr.get(i), count);
         }
     }
-    int max = birdTypes.keySet().stream().findFirst().get();
-    System.out.println(max);
+    // System.out.println(birdTypes);
+    int maxValueInMap = (Collections.max(birdTypes.values()));
+    // System.out.println("max value = "+ maxValueInMap);
 
-    for (Map.Entry<Integer, Integer> pair : birdTypes.entrySet()) {
-        if (max < pair.getValue()) {
-            max = pair.getValue();
-        }
+    birdTypes.values().removeIf(v -> !v.equals(maxValueInMap));
+    birdType = birdTypes.keySet().stream().findFirst().get();
 
-        // pair.getKey()
-    }
-
-    System.out.println(birdTypes);
+    // System.out.println(birdTypes);
 
     return birdType;
-
 }
