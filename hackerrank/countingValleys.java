@@ -1,30 +1,24 @@
 public static int countingValleys(int steps, String path) {
-    int valley = 0;
-    int downnHil = 0;
-    int uphil = 0;
+    int numOfValley = 0;
     String currentStep;
-    String currentDirection = path.substring(0, 1);
+    int seaLevel = 0;
 
     System.out.println(path);
 
-    for (int i = 2; i <= steps; i++) {
+    for (int i = 1; i <= steps; i++) {
         currentStep = path.substring(i - 1, i);
-        // System.out.println(currentStep);
-        if ((uphil - downnHil) == 0) {
-            valley++;
-        }
-        if (currentDirection.equals(currentStep)) {
-            if (currentStep.equals("U")) {
-                uphil++;
-            } else {
-                downnHil++;
-            }
 
+        if (currentStep.equals("U")) {
+            seaLevel++;
         } else {
-            currentDirection = path.substring(i - 1, i);
-            uphil = 0;
-            downnHil = 0;
+            seaLevel--;
         }
+
+        if (seaLevel == 0 && currentStep.equals("D")) {
+            numOfValley++;
+        }
+        System.out.println(seaLevel + ", and current :" + currentStep + "valleyCount:" + numOfValley);
+
     }
-    return valley;
+    return numOfValley;
 }
