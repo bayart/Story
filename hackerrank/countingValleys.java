@@ -1,35 +1,26 @@
 public static int countingValleys(int steps, String path) {
-
-    long startTime = System.nanoTime();
-
-    int numOfValley = 0;
-    String currentStep;
-    int valleyEnd = 0;
+    int numOfValleys = 0;
     int seaLevel = 0;
+    boolean inValley = false;
 
-    System.out.println(path);
+    for (int i = 0; i < steps; i++) {
+        char step = path.charAt(i);
 
-    for (int i = 1; i <= steps; i++) {
-        currentStep = path.substring(i - 1, i);
-
-        if (currentStep.equals("U")) {
+        if (step == 'U') {
             seaLevel++;
         } else {
             seaLevel--;
         }
-        if (i > 1 & seaLevel == 0 && currentStep.equals("U")) {
-            valleyEnd = 1;
+
+        if (seaLevel < 0 && !inValley) {
+            inValley = true;
         }
 
-        if (seaLevel == 0 && currentStep.equals("U") && valleyEnd == 1) {
-            numOfValley++;
-            valleyEnd = 0;
+        if (seaLevel == 0 && inValley) {
+            numOfValleys++;
+            inValley = false;
         }
-        System.out.println(seaLevel + ", and current :" + currentStep + "valleyCount:" + numOfValley);
-
     }
-    // long endTime = System.nanoTime();
-    // long duration = endTime - startTime;
-    // System.out.println("TIME: " + duration + " ns");
-    return numOfValley;
+
+    return numOfValleys;
 }
