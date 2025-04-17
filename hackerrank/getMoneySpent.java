@@ -8,7 +8,7 @@ static int getMoneySpent(int[] keyboards, int[] drives, int b) {
     }
     for (int i = 0; i < keyboards.length; i++) {
         for (int j = 0; j < drives.length; j++) {
-            if (keyboards[i] + drives[j] < b) {
+            if (keyboards[i] + drives[j] <= b) {
                 couple.add(keyboards[i]);
                 couple.add(drives[j]);
                 purchOptions.add(new ArrayList(couple));
