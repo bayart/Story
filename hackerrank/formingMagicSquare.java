@@ -1,3 +1,5 @@
+import java.util.List;
+
 public static int formingMagicSquare(List<List<Integer>> s) {
 
     int magicCost = 0;
@@ -34,10 +36,10 @@ public static int formingMagicSquare(List<List<Integer>> s) {
 
         }
 
-        System.out.println("row sum = " + rowSum);
-        System.out.println("rowmax = " + rowMax);
-        System.out.println("cost = " + magicCost);
-        System.out.println("--------------------------");
+        // System.out.println("row sum = " + rowSum);
+        // System.out.println("rowmax = " + rowMax);
+        // System.out.println("cost = " + magicCost);
+        // System.out.println("--------------------------");
     }
 
     return magicCost;
