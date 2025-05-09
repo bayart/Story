@@ -20,7 +20,7 @@ public static int formingMagicSquare(List<List<Integer>> s) {
         rowMax = s.get(i).get(0);
         rowIndex = i;
         colIndex = 0;
-        System.out.println("rowmax: " + rowMax);
+        // System.out.println("rowmax: " + rowMax );
 
         for (int j = 0; j < s.size(); j++) {
             currentRow = i;
@@ -34,11 +34,16 @@ public static int formingMagicSquare(List<List<Integer>> s) {
         }
         if (rowSum != 15) {
             differerence = 15 - rowSum;
+            int columnSum = 0;
 
             magicCost = magicCost + differerence;
-
-            s.get(rowIndex).set(colIndex, s.get(rowIndex).get(colIndex) + differerence);
-            System.out.println(s);
+            for (int r = 0; r < s.size(); r++) {
+                columnSum = columnSum + s.get(r).get(colIndex);
+            }
+            if (columnSum != 15) {
+                s.get(rowIndex).set(colIndex, s.get(rowIndex).get(colIndex) + differerence);
+                System.out.println(s);
+            }
 
             // System.out.println("test: " + currentRow + ", " + differerence);
         }
