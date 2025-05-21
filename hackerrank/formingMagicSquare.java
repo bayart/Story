@@ -1,58 +1,27 @@
 public static int formingMagicSquare(List<List<Integer>> s) {
+    // All 8 possible 3x3 magic squares with numbers 1-9 and sum 15
+    int[][][] magicSquares = {
+            { { 8, 1, 6 }, { 3, 5, 7 }, { 4, 9, 2 } },
+            { { 6, 1, 8 }, { 7, 5, 3 }, { 2, 9, 4 } },
+            { { 4, 9, 2 }, { 3, 5, 7 }, { 8, 1, 6 } },
+            { { 2, 9, 4 }, { 7, 5, 3 }, { 6, 1, 8 } },
+            { { 8, 3, 4 }, { 1, 5, 9 }, { 6, 7, 2 } },
+            { { 4, 3, 8 }, { 9, 5, 1 }, { 2, 7, 6 } },
+            { { 6, 7, 2 }, { 1, 5, 9 }, { 8, 3, 4 } },
+            { { 2, 7, 6 }, { 9, 5, 1 }, { 4, 3, 8 } }
+    };
 
-    int magicCost = 0;
-    int currentRow = 0;
-    int differerence = 0;
-    int rowIndex = 0;
-    int colIndex = 0;
-    int rowMax = 0;
-    int rowSum = 0;
-    // for (int i = 0; i < s.size(); i++) {
-    // for (int j = 0; j < s.size(); j++) {
-    // System.out.println(s.get(i).get(j));
-    // }
-    // System.out.println("current row :"+i);
+    int minCost = Integer.MAX_VALUE;
 
-    // }
-
-    for (int i = 0; i < s.size(); i++) {
-        rowSum = 0;
-        rowMax = s.get(i).get(0);
-        rowIndex = i;
-        colIndex = 0;
-        // System.out.println("rowmax: " + rowMax );
-
-        for (int j = 0; j < s.size(); j++) {
-            currentRow = i;
-
-            rowSum = rowSum + s.get(i).get(j);
-            if (rowMax < s.get(i).get(j)) {
-                rowMax = s.get(i).get(j);
-                rowIndex = i;
-                colIndex = j;
+    for (int[][] magic : magicSquares) {
+        int cost = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                cost += Math.abs(s.get(i).get(j) - magic[i][j]);
             }
         }
-        if (rowSum != 15) {
-            differerence = 15 - rowSum;
-            int columnSum = 0;
-
-            magicCost = magicCost + differerence;
-            for (int r = 0; r < s.size(); r++) {
-                columnSum = columnSum + s.get(r).get(colIndex);
-            }
-            if (columnSum != 15) {
-                s.get(rowIndex).set(colIndex, s.get(rowIndex).get(colIndex) + differerence);
-                System.out.println(s);
-            }
-
-            // System.out.println("test: " + currentRow + ", " + differerence);
-        }
-
-        System.out.println("row sum = " + rowSum);
-        System.out.println("rowmax = " + rowMax);
-        System.out.println("cost = " + magicCost);
-        System.out.println("--------------------------");
+        minCost = Math.min(minCost, cost);
     }
 
-    return magicCost;
+    return minCost;
 }
